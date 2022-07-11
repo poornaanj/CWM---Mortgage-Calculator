@@ -13,21 +13,44 @@ public class Main {
         float monthlyInterest;
         int noOfPayments;
         double mortgage;
+        int principal;
+        float annualInterest;
+        short period;
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Principal : ");
-        int principal = scanner.nextInt();
+        while(true){
+            System.out.print("Principal : ");
+            principal = scanner.nextInt();
+            if(principal<100000||principal>10000000) {
+                System.out.println("Enter a value between 100000 & 10000000");
+                continue;
+            }
+            break;
+        }
 
-        System.out.print("Annual interest rate : ");
-        float annualInterest = scanner.nextFloat();
+        while(true){
+            System.out.print("Annual interest rate : ");
+            annualInterest = scanner.nextFloat();
+            if(annualInterest<0||annualInterest>30) {
+                System.out.println("Enter a value between 0 & 30");
+                continue;
+            }
+            break;
+        }
 
-        System.out.print("Period (Years) : ");
-        byte period = scanner.nextByte();
+        while(true){
+            System.out.print("Period (Years) : ");
+            period = scanner.nextShort();
+            if(period<0||period>30) {
+                System.out.println("Enter a value between 0 & 30");
+                continue;
+            }
+            break;
+        }
 
         monthlyInterest = annualInterest/MONTHS_PER_YEAR/PERCENT;
         noOfPayments = period*MONTHS_PER_YEAR;
-
 
         mortgage = principal*(monthlyInterest*Math.pow((1+monthlyInterest),noOfPayments))/(Math.pow((1+monthlyInterest),noOfPayments)-1);
 
@@ -35,7 +58,6 @@ public class Main {
 
         System.out.println("Mortgage : "+ mortgageFormatted);
 
-        //input validation
 
     }
 }
