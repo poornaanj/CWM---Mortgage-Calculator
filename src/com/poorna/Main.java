@@ -16,13 +16,17 @@ public class Main {
 
         String mortgageFormatted = NumberFormat.getCurrencyInstance(Locale.US).format(mortgage);
 
-        System.out.println("Mortgage : "+ mortgageFormatted);
-        System.out.println("----------------");
+        System.out.println("Mortgage");
+        System.out.println("---------");
+        System.out.println("Monthly Payment : "+ mortgageFormatted);
+        System.out.println(" ");
         System.out.println("Payment schedule");
+        System.out.println("----------------");
 
-        for(short paymentsMade=0;paymentsMade<=(period*12);paymentsMade++){
+        for(short paymentsMade=1;paymentsMade<=(period*12);paymentsMade++){
             double remainingBalance = calculatePaymentSchedule(principal,annualInterest,period,paymentsMade);
-            System.out.println(remainingBalance);
+            String remainingBalanceFormatted = NumberFormat.getCurrencyInstance(Locale.US).format(remainingBalance);
+            System.out.println(remainingBalanceFormatted);
         }
 
     }
