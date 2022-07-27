@@ -17,6 +17,13 @@ public class Main {
         String mortgageFormatted = NumberFormat.getCurrencyInstance(Locale.US).format(mortgage);
 
         System.out.println("Mortgage : "+ mortgageFormatted);
+        System.out.println("----------------");
+        System.out.println("Payment schedule");
+
+        for(short paymentsMade=0;paymentsMade<=(period*12);paymentsMade++){
+            double remainingBalance = calculatePaymentSchedule(principal,annualInterest,period,paymentsMade);
+            System.out.println(remainingBalance);
+        }
 
     }
 
@@ -46,5 +53,18 @@ public class Main {
         noOfPayments = period*MONTHS_PER_YEAR;
 
         return  principal*(monthlyInterest*Math.pow((1+monthlyInterest),noOfPayments))/(Math.pow((1+monthlyInterest),noOfPayments)-1);
+    }
+
+    public static double calculatePaymentSchedule(int principal, float annualInterest, short period, short paymentsMade){
+
+        final byte MONTHS_PER_YEAR = 12;
+        final byte PERCENT = 100;
+        float monthlyInterest;
+        int noOfPayments;
+
+        monthlyInterest = annualInterest/MONTHS_PER_YEAR/PERCENT;
+        noOfPayments = period*MONTHS_PER_YEAR;
+
+        return principal*(Math.pow((1+monthlyInterest),noOfPayments)-Math.pow((1+monthlyInterest),paymentsMade))/(Math.pow((1+monthlyInterest),noOfPayments)-1);
     }
 }
