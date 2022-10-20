@@ -1,2 +1,2 @@
-# CWM---Mortgage-Calculator
+# Mortgage-Calculator
 This is a mortgage calculator sample project.
